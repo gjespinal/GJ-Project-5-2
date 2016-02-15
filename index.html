@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Neighborhood Map</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/main.css">
+	</head>
+	<body>
+		<div class="container container_layout">
+			<div class="row">
+				<!-- Partition the row by 3:9 for list view + search bar and Google map view -->
+				<div class="col-md-3">
+					<!-- Search Bar knockout binding -->
+					<div class="search_layout" id="searchBar">
+						<form id="search" data-bind="submit: searchFun">
+							<input type="search" data-bind="textInput: searchStr">
+							<input type="submit" value="search" >
+						</form>
+					</div>
+					<!-- Templated list binding -->
+					<div id="pins" class ="list_layout" data-bind="template: { name: 'pinsTmpl', foreach: pins }"></div>
+					<script id="pinsTmpl" type="text/html">
+					<ul>
+						<li ><a href="#"><span data-bind="click: clickOnListItem, text: name"></span></a></li>
+					</ul>
+					</script>
+				</div>
+				<!--  Google map on the right-->
+				<div class="col-md-9 map_container">
+					<div id="map-canvas" class="map_canvas"></div>
+					<div class="infobox-wrapper">
+						<div class="infobox"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDNZxd5oYiUkYrnGfju7lM1rZvlL7jjAUw"></script>
+		<script src="js/libs/jquery-1.11.3.min.js"></script>
+		<script src="js/libs/knockout-3.3.0.js"></script>
+		<script src="js/libs/infobox_packed.js"></script>
+		<script src="js/app-dr.js"></script>
+	</body>
+</html>
